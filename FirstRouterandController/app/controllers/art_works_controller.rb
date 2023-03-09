@@ -1,10 +1,7 @@
 class ArtWorksController < ApplicationController
     def index
-      # debugger
       param = params[:user_id]
       incoming_wildcard = ArtWork.artworks_for_user_id(param)
-      # render_stuff = ArtWork.find_by(id: incoming_wildcard)
-      # debugger
       if incoming_wildcard
         render json: incoming_wildcard
       else
