@@ -11,9 +11,10 @@ ApplicationRecord.transaction do
   User.destroy_all
   ArtWork.destroy_all
   ArtworkShare.destroy_all
+  Comment.destroy_all
 
   puts "resetting ID sequences"
-  %w(users art_works artwork_shares).each do |table|
+  %w(users art_works artwork_shares comments).each do |table|
     ApplicationRecord.connection.reset_pk_sequence!(table)
   end
 
@@ -24,4 +25,6 @@ ApplicationRecord.transaction do
   art2 = ArtWork.create(:title => 'The creation of adam', :image_url => 'https://th-thumbnailer.cdn-si-edu.com/zvrroTVd9q3H_KQtNMAS9lGPayU=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/The-Creation-of-Adam-Michelangelo-631.jpg', :artist_id => u2.id )
   share1 = ArtworkShare.create(:art_work_id => art1.id, :viewer_id => u2.id )
   share2 = ArtworkShare.create(:art_work_id => art2.id, :viewer_id => u1.id )
+  comment1 = Comment.create(:author_id => u1.id, :art_work_id => art2.id, :body => 'This stinks!!!')
+  comment2 = Comment.create(:author_id => u2.id, :art_work_id => art1.id, :body => 'This is so beautiful!')
 end

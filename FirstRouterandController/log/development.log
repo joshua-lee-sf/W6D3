@@ -2070,3 +2070,250 @@ Processing by ArtWorksController#index as */*
 Completed 200 OK in 30ms (Views: 16.4ms | ActiveRecord: 8.3ms | Allocations: 14943)
 
 
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6669552664136696880)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComments (20230309223040)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (91.6ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "author_id" bigint NOT NULL, "art_work_id" bigint NOT NULL, "body" text NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_f44b1e3c8a"
+FOREIGN KEY ("author_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_ede1561d26"
+FOREIGN KEY ("art_work_id")
+  REFERENCES "art_works" ("id")
+)[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE INDEX "index_comments_on_author_id" ON "comments" ("author_id")[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE INDEX "index_comments_on_art_work_id" ON "comments" ("art_work_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230309223040"]]
+  [1m[36mTRANSACTION (19.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(6669552664136696880)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mArtWork Load (1.4ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 1]]
+  [1m[36mArtworkShare Load (0.7ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 1]]
+  [1m[36mArtworkShare Destroy (0.8ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 1]]
+  [1m[36mArtWork Destroy (1.7ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 1]]
+  [1m[36mArtworkShare Load (0.5ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 1]]
+  [1m[36mArtworkShare Destroy (0.6ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 2]]
+  [1m[36mUser Destroy (1.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[36mArtWork Load (0.4ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 2]]
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 2]]
+  [1m[36mArtWork Destroy (0.9ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 2]]
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 2]]
+  [1m[36mUser Destroy (0.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  [1m[36mArtWork Load (0.3ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works"[0m
+  [1m[36mArtworkShare Load (0.5ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares"[0m
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "PabloPicaso"], ["created_at", "2023-03-09 22:36:31.716497"], ["updated_at", "2023-03-09 22:36:31.716497"]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "MichaelAngelo"], ["created_at", "2023-03-09 22:36:31.722988"], ["updated_at", "2023-03-09 22:36:31.722988"]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArtWork Create (0.7ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "La Vie"], ["image_url", "https://www.pablopicasso.org/images/la-vie-photo.jpg"], ["artist_id", 1], ["created_at", "2023-03-09 22:36:31.729805"], ["updated_at", "2023-03-09 22:36:31.729805"]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArtWork Create (2.0ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "The creation of adam"], ["image_url", "https://th-thumbnailer.cdn-si-edu.com/zvrroTVd9q3H_KQtNMAS9lGPayU=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/The-Creation-of-Adam-Michelangelo-631.jpg"], ["artist_id", 2], ["created_at", "2023-03-09 22:36:31.735984"], ["updated_at", "2023-03-09 22:36:31.735984"]]
+  [1m[36mArtWork Load (0.5ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (1.0ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 1], ["viewer_id", 2], ["created_at", "2023-03-09 22:36:31.758928"], ["updated_at", "2023-03-09 22:36:31.758928"]]
+  [1m[36mArtWork Load (0.6ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (3.4ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 2], ["viewer_id", 1], ["created_at", "2023-03-09 22:36:31.768627"], ["updated_at", "2023-03-09 22:36:31.768627"]]
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mArtWork Load (0.5ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 1]]
+  [1m[36mArtworkShare Load (0.6ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 1]]
+  [1m[36mArtworkShare Destroy (0.5ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 1]]
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."art_work_id" = $1[0m  [["art_work_id", 1]]
+  [1m[36mArtWork Destroy (0.7ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 1]]
+  [1m[36mArtworkShare Load (0.3ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 1]]
+  [1m[36mArtworkShare Destroy (0.5ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 2]]
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."author_id" = $1[0m  [["author_id", 1]]
+  [1m[36mUser Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[36mArtWork Load (0.3ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 2]]
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 2]]
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."art_work_id" = $1[0m  [["art_work_id", 2]]
+  [1m[36mArtWork Destroy (0.6ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 2]]
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 2]]
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."author_id" = $1[0m  [["author_id", 2]]
+  [1m[36mUser Destroy (0.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  [1m[36mArtWork Load (0.4ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works"[0m
+  [1m[36mArtworkShare Load (0.3ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares"[0m
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  [1m[36mUser Create (1.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "PabloPicaso"], ["created_at", "2023-03-09 22:57:27.539837"], ["updated_at", "2023-03-09 22:57:27.539837"]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "MichaelAngelo"], ["created_at", "2023-03-09 22:57:27.546760"], ["updated_at", "2023-03-09 22:57:27.546760"]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArtWork Create (1.8ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "La Vie"], ["image_url", "https://www.pablopicasso.org/images/la-vie-photo.jpg"], ["artist_id", 1], ["created_at", "2023-03-09 22:57:27.552895"], ["updated_at", "2023-03-09 22:57:27.552895"]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArtWork Create (0.7ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "The creation of adam"], ["image_url", "https://th-thumbnailer.cdn-si-edu.com/zvrroTVd9q3H_KQtNMAS9lGPayU=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/The-Creation-of-Adam-Michelangelo-631.jpg"], ["artist_id", 2], ["created_at", "2023-03-09 22:57:27.559127"], ["updated_at", "2023-03-09 22:57:27.559127"]]
+  [1m[36mArtWork Load (0.5ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (1.1ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 1], ["viewer_id", 2], ["created_at", "2023-03-09 22:57:27.589999"], ["updated_at", "2023-03-09 22:57:27.589999"]]
+  [1m[36mArtWork Load (0.6ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (0.6ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 2], ["viewer_id", 1], ["created_at", "2023-03-09 22:57:27.601613"], ["updated_at", "2023-03-09 22:57:27.601613"]]
+  [1m[36mArtWork Load (0.7ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mComment Create (2.4ms)[0m  [1m[32mINSERT INTO "comments" ("author_id", "art_work_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["author_id", 1], ["art_work_id", 2], ["body", "This stinks!!!"], ["created_at", "2023-03-09 22:57:27.617344"], ["updated_at", "2023-03-09 22:57:27.617344"]]
+  [1m[36mArtWork Load (0.5ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mComment Create (1.1ms)[0m  [1m[32mINSERT INTO "comments" ("author_id", "art_work_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["author_id", 2], ["art_work_id", 1], ["body", "This is so beautiful!"], ["created_at", "2023-03-09 22:57:27.630303"], ["updated_at", "2023-03-09 22:57:27.630303"]]
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/comments/1" for ::1 at 2023-03-09 14:57:55 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/comments/1"):
+  
+Started GET "/comments/1" for ::1 at 2023-03-09 15:00:46 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/comments/1"):
+  
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:00:54 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments"."body" FROM "comments" WHERE (id = (NULL) OR art_work_id = (NULL))[0m
+  ↳ app/controllers/comments_controller.rb:7:in `index'
+Completed 200 OK in 178ms (Views: 7.7ms | ActiveRecord: 4.1ms | Allocations: 3819)
+
+
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:04:59 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (1.4ms)[0m  [1m[34mSELECT "comments"."body" FROM "comments" INNER JOIN "art_works" ON "art_works"."id" = "comments"."art_work_id" INNER JOIN "users" ON "users"."id" = "comments"."author_id" WHERE (users.id = (NULL) OR art_works.id = (NULL))[0m
+  ↳ app/controllers/comments_controller.rb:7:in `index'
+Completed 200 OK in 460ms (Views: 322.1ms | ActiveRecord: 11.0ms | Allocations: 10229)
+
+
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:05:23 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments"."body" FROM "comments" INNER JOIN "art_works" ON "art_works"."id" = "comments"."art_work_id" LEFT OUTER JOIN "users" ON "users"."id" = "comments"."author_id" WHERE (users.id = (NULL) OR art_works.id = (NULL))[0m
+  ↳ app/controllers/comments_controller.rb:7:in `index'
+Completed 200 OK in 271ms (Views: 134.0ms | ActiveRecord: 8.0ms | Allocations: 7917)
+
+
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:06:58 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments"."body" FROM "comments" INNER JOIN "art_works" ON "art_works"."id" = "comments"."art_work_id" LEFT OUTER JOIN "users" ON "users"."id" = "comments"."author_id" WHERE (users.id = (NULL) OR art_works.id = (NULL))[0m
+  ↳ app/controllers/comments_controller.rb:9:in `index'
+Completed 200 OK in 276ms (Views: 134.9ms | ActiveRecord: 7.7ms | Allocations: 7916)
+
+
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:07:11 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6669552664136696880)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to EditComments (20230309231430)
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (15.7ms)[0m  [1m[35mCREATE INDEX "index_comments_on_body" ON "comments" ("body")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230309231430"]]
+  [1m[36mTRANSACTION (10.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(6669552664136696880)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:16:03 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:17:29 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:18:41 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:19:42 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (1.7ms)[0m  [1m[34mSELECT "comments"."id" FROM "comments" INNER JOIN "art_works" ON "art_works"."id" = "comments"."art_work_id" LEFT OUTER JOIN "users" ON "users"."id" = "comments"."author_id" WHERE (users.id = ('1') OR art_works.id = ('1'))[0m
+  ↳ app/controllers/comments_controller.rb:8:in `index'
+Completed 200 OK in 15333ms (Views: 399.9ms | ActiveRecord: 10.5ms | Allocations: 104153)
+
+
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:20:26 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments"."body" FROM "comments" INNER JOIN "art_works" ON "art_works"."id" = "comments"."art_work_id" LEFT OUTER JOIN "users" ON "users"."id" = "comments"."author_id" WHERE (users.id = ('1') OR art_works.id = ('1'))[0m
+  ↳ app/controllers/comments_controller.rb:8:in `index'
+Completed 200 OK in 260ms (Views: 120.3ms | ActiveRecord: 10.6ms | Allocations: 9283)
+
+
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:21:12 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (1.1ms)[0m  [1m[34mSELECT "users"."username", "comments"."body" FROM "comments" INNER JOIN "art_works" ON "art_works"."id" = "comments"."art_work_id" LEFT OUTER JOIN "users" ON "users"."id" = "comments"."author_id" WHERE (users.id = ('1') OR art_works.id = ('1'))[0m
+  ↳ app/controllers/comments_controller.rb:8:in `index'
+Completed 200 OK in 265ms (Views: 130.9ms | ActiveRecord: 15.6ms | Allocations: 9426)
+
+
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:22:40 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "users"."username", "comments"."body" FROM "comments" INNER JOIN "art_works" ON "art_works"."id" = "comments"."art_work_id" LEFT OUTER JOIN "users" ON "users"."id" = "comments"."author_id" WHERE (users.id = ('1') AND art_works.id = ('1'))[0m
+  ↳ app/controllers/comments_controller.rb:8:in `index'
+Completed 200 OK in 285ms (Views: 140.3ms | ActiveRecord: 13.5ms | Allocations: 7914)
+
+
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:24:24 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "users"."username", "comments"."body" FROM "comments" INNER JOIN "art_works" ON "art_works"."id" = "comments"."art_work_id" LEFT OUTER JOIN "users" ON "users"."id" = "comments"."author_id" WHERE (author_id = ('1') OR art_work_id = ('1'))[0m
+  ↳ app/controllers/comments_controller.rb:8:in `index'
+Completed 200 OK in 266ms (Views: 118.9ms | ActiveRecord: 8.9ms | Allocations: 9374)
+
+
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:25:16 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "users"."username", "comments"."body", "comments"."id" FROM "comments" INNER JOIN "art_works" ON "art_works"."id" = "comments"."art_work_id" LEFT OUTER JOIN "users" ON "users"."id" = "comments"."author_id" WHERE (author_id = ('1') OR art_work_id = ('1'))[0m
+  ↳ app/controllers/comments_controller.rb:8:in `index'
+Completed 200 OK in 275ms (Views: 137.8ms | ActiveRecord: 14.4ms | Allocations: 9492)
+
+
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:28:16 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (1.1ms)[0m  [1m[34mSELECT "comments"."body", "comments"."id" FROM "comments" WHERE (art_work_id = ('1'))[0m
+  ↳ app/controllers/comments_controller.rb:8:in `index'
+Completed 200 OK in 146ms (Views: 11.8ms | ActiveRecord: 10.3ms | Allocations: 3883)
+
+
+Started GET "/users/1/comments/" for ::1 at 2023-03-09 15:35:20 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CommentsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments"."body" FROM "comments" WHERE (art_work_id = ('1'))[0m
+  ↳ app/controllers/comments_controller.rb:12:in `index'
+Completed 200 OK in 251ms (Views: 45.4ms | ActiveRecord: 7.5ms | Allocations: 7557)
+
+
+Started GET "/art_works/1/comments/" for ::1 at 2023-03-09 15:35:37 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"art_work_id"=>"1"}
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments"."body" FROM "comments" WHERE (art_work_id = (NULL))[0m
+  ↳ app/controllers/comments_controller.rb:12:in `index'
+Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 0.9ms | Allocations: 893)
+
+
+Started GET "/art_works/1/comments/" for ::1 at 2023-03-09 15:37:55 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CommentsController#index as */*
+  Parameters: {"art_work_id"=>"1"}
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments"."body" FROM "comments" WHERE (art_work_id = (NULL))[0m
+  ↳ app/controllers/comments_controller.rb:12:in `index'
+Completed 200 OK in 187ms (Views: 8.8ms | ActiveRecord: 4.8ms | Allocations: 3885)
+
+
+Started GET "/art_works/1/comments/" for ::1 at 2023-03-09 15:41:12 -0800
+Processing by CommentsController#index as */*
+  Parameters: {"art_work_id"=>"1"}
+  [1m[36mComment Load (0.7ms)[0m  [1m[34mSELECT "comments"."body" FROM "comments" WHERE (art_work_id = ('1'))[0m
+  ↳ app/controllers/comments_controller.rb:12:in `index'
+Completed 200 OK in 195ms (Views: 55.9ms | ActiveRecord: 9.0ms | Allocations: 6225)
+
+

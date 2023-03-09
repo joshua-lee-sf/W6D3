@@ -25,6 +25,11 @@ class  ArtWork < ApplicationRecord
     class_name: :ArtworkShare,
     dependent: :destroy
 
+  has_many :comments,
+    foreign_key: :art_work_id,
+    class_name: :Comment,
+    dependent: :destroy
+
 
 #Implementing this functionality requires a more complex database query, 
 #but you want to keep your controllers lean; the logic required for complex queries belongs 

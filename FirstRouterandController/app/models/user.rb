@@ -29,5 +29,10 @@ class User < ApplicationRecord
   has_many :shared_viewers,
     through: :views,
     source: :viewer
-    
+  
+  has_many :comments,
+    foreign_key: :author_id,
+    class_name: :Comment,
+    dependent: :destroy,
+    inverse_of: :author
 end
