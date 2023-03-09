@@ -10,8 +10,8 @@
 #  updated_at :datetime         not null
 #
 class  ArtWork < ApplicationRecord
-  validates :title, :image_url, presence: true
-  validates [:title, :artist_id], uniqueness: true
+  validates :title, :image_url, :artist_id, presence: true
+  # validates [:title, :artist_id], uniqueness: true
 
   belongs_to :artist,
     foreign_key: :artist_id,
@@ -19,6 +19,6 @@ class  ArtWork < ApplicationRecord
 
   has_many :artwork_shares,
     foreign_key: :art_work_id,
-    class_name: :ArtWorkShare,
+    class_name: :ArtworkShare,
     dependent: :destroy
 end

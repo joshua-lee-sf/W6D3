@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_09_013028) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_180504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "art_works", force: :cascade do |t|
     t.string "title", null: false
-    t.bigint "image_url", null: false
+    t.text "image_url", null: false
     t.bigint "artist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -6,12 +6,16 @@ Rails.application.routes.draw do
   # resources :users
   # VERB '/path' , to: 'controller#action'
 
-  get '/users/:id', to: 'users#show', as: 'user'
-  get '/users', to: 'users#index', as: 'users'
-  post '/users/:id', to: 'users#create'
-  get '/users/new', to: 'users#new', as: 'new_user'
-  get '/users/:id', to: 'users#edit', as: 'edit_user'
-  patch '/users/:id', to: 'users#update'
-  put '/users/:id', to: 'users#update'
-  delete '/users/:id', to: 'users#destroy'
+  # get '/users/:id', to: 'users#show', as: 'user'
+  # get '/users', to: 'users#index', as: 'users'
+  # post '/users/:id', to: 'users#create'
+  # get '/users/new', to: 'users#new', as: 'new_user'
+  # get '/users/:id', to: 'users#edit', as: 'edit_user'
+  # patch '/users/:id', to: 'users#update'
+  # put '/users/:id', to: 'users#update'
+  # delete '/users/:id', to: 'users#destroy'
+
+  resources :users, except: [:new, :edit]
+  resources :art_works, except: [:new, :edit]
+  resources :artwork_shares
 end

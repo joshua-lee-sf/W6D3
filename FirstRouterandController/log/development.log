@@ -1148,3 +1148,151 @@ FOREIGN KEY ("viewer_id")
   [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6669552664136696880)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateArtworkShares (20230309013028)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (49.4ms)[0m  [1m[35mCREATE TABLE "artwork_shares" ("id" bigserial primary key, "art_work_id" bigint NOT NULL, "viewer_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_80ec66a22d"
+FOREIGN KEY ("art_work_id")
+  REFERENCES "art_works" ("id")
+, CONSTRAINT "fk_rails_abdcd9d49f"
+FOREIGN KEY ("viewer_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE INDEX "index_artwork_shares_on_art_work_id" ON "artwork_shares" ("art_work_id")[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE INDEX "index_artwork_shares_on_viewer_id" ON "artwork_shares" ("viewer_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230309013028"]]
+  [1m[36mTRANSACTION (9.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to EditArtwork (20230309180504)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (47.2ms)[0m  [1m[35mALTER TABLE "art_works" ALTER COLUMN "image_url" TYPE text[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230309180504"]]
+  [1m[36mTRANSACTION (26.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(6669552664136696880)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mArtWork Load (0.6ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 1]]
+  [1m[36mArtworkShare Load (0.6ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 1]]
+  [1m[36mUser Destroy (6.0ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[36mArtWork Load (0.4ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works"[0m
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares"[0m
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "PabloPicaso"], ["created_at", "2023-03-09 18:10:08.978327"], ["updated_at", "2023-03-09 18:10:08.978327"]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "MichaelAngelo"], ["created_at", "2023-03-09 18:10:08.984393"], ["updated_at", "2023-03-09 18:10:08.984393"]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArtWork Create (2.7ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "La Vie"], ["image_url", "https://www.pablopicasso.org/images/la-vie-photo.jpg"], ["artist_id", 1], ["created_at", "2023-03-09 18:10:09.069401"], ["updated_at", "2023-03-09 18:10:09.069401"]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArtWork Create (1.4ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "The creation of adam"], ["image_url", "https://th-thumbnailer.cdn-si-edu.com/zvrroTVd9q3H_KQtNMAS9lGPayU=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/The-Creation-of-Adam-Michelangelo-631.jpg"], ["artist_id", 2], ["created_at", "2023-03-09 18:10:09.080554"], ["updated_at", "2023-03-09 18:10:09.080554"]]
+  [1m[36mArtWork Load (0.3ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (1.0ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 1], ["viewer_id", 2], ["created_at", "2023-03-09 18:10:09.096142"], ["updated_at", "2023-03-09 18:10:09.096142"]]
+  [1m[36mArtWork Load (0.5ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (0.6ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 2], ["viewer_id", 1], ["created_at", "2023-03-09 18:10:09.104589"], ["updated_at", "2023-03-09 18:10:09.104589"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/users" for ::1 at 2023-03-09 10:26:09 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:3:in `index'
+Completed 200 OK in 206ms (Views: 52.8ms | ActiveRecord: 10.2ms | Allocations: 7338)
+
+
+Started GET "/users/1" for ::1 at 2023-03-09 10:26:21 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `show'
+Completed 200 OK in 64ms (Views: 1.1ms | ActiveRecord: 3.1ms | Allocations: 3739)
+
+
+Started POST "/users?users[username]=Kass" for ::1 at 2023-03-09 10:27:14 -0800
+Processing by UsersController#create as */*
+  Parameters: {"users"=>{"username"=>"Kass"}}
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms | Allocations: 710)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: user
+Did you mean?  users:
+  app/controllers/users_controller.rb:46:in `user_params'
+  app/controllers/users_controller.rb:7:in `create'
+
+Started POST "/users?users[username]=Kass" for ::1 at 2023-03-09 10:27:49 -0800
+Processing by UsersController#create as */*
+  Parameters: {"users"=>{"username"=>"Kass"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "Kass"], ["created_at", "2023-03-09 18:27:49.989626"], ["updated_at", "2023-03-09 18:27:49.989626"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+Completed 200 OK in 178ms (Views: 1.1ms | ActiveRecord: 10.1ms | Allocations: 6989)
+
+
+Started POST "/users" for ::1 at 2023-03-09 10:27:57 -0800
+Processing by UsersController#create as */*
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms | Allocations: 621)
+
+
+
+ActionController::ParameterMissing - param is missing or the value is empty: users:
+  app/controllers/users_controller.rb:46:in `user_params'
+  app/controllers/users_controller.rb:7:in `create'
+
+Started GET "/users" for ::1 at 2023-03-09 10:28:04 -0800
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:3:in `index'
+Completed 200 OK in 11ms (Views: 8.0ms | ActiveRecord: 1.1ms | Allocations: 1079)
+
+
+Started GET "/artworks" for ::1 at 2023-03-09 10:28:15 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/artworks"):
+  
+Started GET "/art_works" for ::1 at 2023-03-09 10:28:21 -0800
+
+ActionController::RoutingError - uninitialized constant ArtWorksController
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+Did you mean?  ArtworksController
+            raise MissingController.new(error.message, error.name)
+            ^^^^^:
+
+Started GET "/art_works" for ::1 at 2023-03-09 10:28:50 -0800
+
+ActionController::RoutingError - uninitialized constant ArtWorksController
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+Did you mean?  ArtworksController
+            raise MissingController.new(error.message, error.name)
+            ^^^^^:
+
+Started GET "/art_works" for ::1 at 2023-03-09 10:30:42 -0800
+
+ActionController::RoutingError - uninitialized constant ArtWorksController
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+Did you mean?  ArtworksController
+            raise MissingController.new(error.message, error.name)
+            ^^^^^:
+
+Started GET "/art_works" for ::1 at 2023-03-09 10:40:06 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArtWorksController#index as */*
+  [1m[36mArtWork Load (1.1ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works"[0m
+  ↳ app/controllers/art_works_controller.rb:3:in `index'
+Completed 200 OK in 303ms (Views: 46.0ms | ActiveRecord: 8.8ms | Allocations: 8229)
+
+

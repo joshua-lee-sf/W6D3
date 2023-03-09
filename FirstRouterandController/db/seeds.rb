@@ -9,15 +9,19 @@ ApplicationRecord.transaction do
 
   puts "destroying table"
   User.destroy_all
+  ArtWork.destroy_all
+  ArtworkShare.destroy_all
 
   puts "resetting ID sequences"
-  %w(users).each do |table|
+  %w(users art_works artwork_shares).each do |table|
     ApplicationRecord.connection.reset_pk_sequence!(table)
   end
 
   puts "creating seed data"
-  u1 = User.create!(name: 'Darren', email: 'deid@gmail.com')
-  u2 = User.create!(name: 'Taylor', email: 'tmustof@gmail.com')
-  u3 = User.create!(name: 'Diego', email: 'dchavez@gmail.com')
-
+  u1 = User.create(:username => 'PabloPicaso')
+  u2 = User.create(:username => 'MichaelAngelo')
+  art1 = ArtWork.create(:title => 'La Vie', :image_url => 'https://www.pablopicasso.org/images/la-vie-photo.jpg', :artist_id => u1.id )
+  art2 = ArtWork.create(:title => 'The creation of adam', :image_url => 'https://th-thumbnailer.cdn-si-edu.com/zvrroTVd9q3H_KQtNMAS9lGPayU=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/The-Creation-of-Adam-Michelangelo-631.jpg', :artist_id => u2.id )
+  share1 = ArtworkShare.create(:art_work_id => art1.id, :viewer_id => u2.id )
+  share2 = ArtworkShare.create(:art_work_id => art2.id, :viewer_id => u1.id )
 end
