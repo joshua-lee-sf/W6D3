@@ -42,7 +42,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    incoming_wildcard = params[:id]
+    user = User.find(incoming_wildcard)
+    user.destroy
 
+    redirect_to users_url
   end
 
   private
