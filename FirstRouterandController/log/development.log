@@ -2,3 +2,141 @@
   [1m[35m (47.8ms)[0m  [1m[35mCREATE DATABASE "FirstRouterandController_test" ENCODING = 'unicode'[0m
   [1m[35m (1.1ms)[0m  [1m[35mCREATE DATABASE "FirstRouterandController_development" ENCODING = 'unicode'[0m
   [1m[35m (0.4ms)[0m  [1m[35mCREATE DATABASE "FirstRouterandController_test" ENCODING = 'unicode'[0m
+Started GET "/" for ::1 at 2023-03-08 15:27:57 -0800
+
+ActiveRecord::NoDatabaseError - We could not find your database: FirstRouterandController_development. Which can be found in the database configuration file located at config/database.yml.
+To resolve this issue:
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+To create your database, run:
+        bin/rails db:create:
+
+  [1m[35m (905.9ms)[0m  [1m[35mCREATE DATABASE "FirstRouterandController_development" ENCODING = 'unicode'[0m
+  [1m[35m (407.9ms)[0m  [1m[35mCREATE DATABASE "FirstRouterandController_test" ENCODING = 'unicode'[0m
+Started GET "/" for ::1 at 2023-03-08 15:28:46 -0800
+Processing by Rails::WelcomeController#index as */*
+  Rendering /home/szabala/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/szabala/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 38.7ms | Allocations: 527)
+Completed 200 OK in 243ms (Views: 116.7ms | ActiveRecord: 0.0ms | Allocations: 2835)
+
+
+Started GET "/1" for ::1 at 2023-03-08 15:29:34 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/1"):
+  
+Started GET "/users" for ::1 at 2023-03-08 15:29:43 -0800
+Processing by UsersController#new as */*
+No template found for UsersController#new, rendering head :no_content
+Completed 204 No Content in 15ms (ActiveRecord: 0.0ms | Allocations: 273)
+
+
+Started GET "/users/1" for ::1 at 2023-03-08 15:30:11 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+No template found for UsersController#show, rendering head :no_content
+Completed 204 No Content in 15ms (ActiveRecord: 0.0ms | Allocations: 111)
+
+
+Started GET "/users/1" for ::1 at 2023-03-08 15:30:40 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+No template found for UsersController#show, rendering head :no_content
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms | Allocations: 77)
+
+
+Started GET "/users" for ::1 at 2023-03-08 15:30:52 -0800
+Processing by UsersController#new as */*
+No template found for UsersController#new, rendering head :no_content
+Completed 204 No Content in 2ms (ActiveRecord: 0.0ms | Allocations: 80)
+
+
+Started GET "/users" for ::1 at 2023-03-08 15:32:04 -0800
+Processing by UsersController#new as */*
+No template found for UsersController#new, rendering head :no_content
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms | Allocations: 136)
+
+
+Started GET "/users" for ::1 at 2023-03-08 15:33:20 -0800
+Processing by UsersController#new as */*
+No template found for UsersController#new, rendering head :no_content
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms | Allocations: 136)
+
+
+Started GET "/users" for ::1 at 2023-03-08 15:34:05 -0800
+Processing by UsersController#new as */*
+No template found for UsersController#new, rendering head :no_content
+Completed 204 No Content in 2ms (ActiveRecord: 0.0ms | Allocations: 136)
+
+
+Started GET "/" for ::1 at 2023-03-08 15:34:13 -0800
+Processing by Rails::WelcomeController#index as */*
+  Rendering /home/szabala/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/szabala/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.1ms | Allocations: 282)
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.0ms | Allocations: 871)
+
+
+Started GET "/users" for ::1 at 2023-03-08 15:34:27 -0800
+Processing by UsersController#new as */*
+No template found for UsersController#new, rendering head :no_content
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/users" for ::1 at 2023-03-08 15:35:08 -0800
+Processing by UsersController#new as */*
+No template found for UsersController#new, rendering head :no_content
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms | Allocations: 136)
+
+
+Started GET "/users" for ::1 at 2023-03-08 15:49:37 -0800
+Started GET "/users" for ::1 at 2023-03-08 15:49:37 -0800
+Started GET "/users" for ::1 at 2023-03-08 15:49:37 -0800
+Started GET "/users" for ::1 at 2023-03-08 15:49:37 -0800
+Started GET "/users" for ::1 at 2023-03-08 15:49:37 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/users" for ::1 at 2023-03-08 15:49:57 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/users" for ::1 at 2023-03-08 16:02:19 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/users" for ::1 at 2023-03-08 16:02:34 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/users" for ::1 at 2023-03-08 16:03:00 -0800
+Processing by UsersController#index as */*
+  Rendering text template
+  Rendered text template (Duration: 0.1ms | Allocations: 10)
+Completed 200 OK in 35ms (Views: 35.1ms | Allocations: 694)
+
+
+Started GET "/users/1" for ::1 at 2023-03-08 16:03:24 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+No template found for UsersController#show, rendering head :no_content
+Completed 204 No Content in 10ms (Allocations: 274)
+
+
+Started GET "/users/1" for ::1 at 2023-03-08 16:03:45 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+No template found for UsersController#show, rendering head :no_content
+Completed 204 No Content in 1ms (Allocations: 135)
+
+
