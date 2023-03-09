@@ -33,7 +33,7 @@ class  ArtWork < ApplicationRecord
 #controller through params[:user_id] because :user_id is part of the nested route.)
 
   def self.artworks_for_user_id(id)
-    art_work = ArtWork.where('artist_id = ?', id).pluck(:id, :title)
+    art_work = ArtWork.joins(:artist).where('artist_id = (?)', id).pluck('users.id')
     art_work.first
   end
 end
