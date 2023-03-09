@@ -1296,3 +1296,230 @@ Processing by ArtWorksController#index as */*
 Completed 200 OK in 303ms (Views: 46.0ms | ActiveRecord: 8.8ms | Allocations: 8229)
 
 
+Started GET "/users/2/art_works" for ::1 at 2023-03-09 10:57:25 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+
+ActiveRecord::PendingMigrationError - Migrations are pending. To resolve this issue, run:
+        bin/rails db:migrate RAILS_ENV=development
+You have 1 pending migration:
+20230309180504_edit_artwork.rb:
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6669552664136696880)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to EditArtwork (20230309180504)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.4ms)[0m  [1m[35mALTER TABLE "art_works" ALTER COLUMN "image_url" TYPE text[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230309180504"]]
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(6669552664136696880)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/2/art_works" for ::1 at 2023-03-09 10:57:43 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArtWorksController#index as */*
+  Parameters: {"user"=>{"name"=>"abby", "email"=>"dchavez@gmail.com"}, "user_id"=>"2"}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 202)
+
+
+
+ArgumentError - wrong number of arguments (given 2, expected 1):
+  app/controllers/art_works_controller.rb:3:in `index'
+
+Started GET "/users/2/art_works" for ::1 at 2023-03-09 10:58:00 -0800
+Processing by ArtWorksController#index as */*
+  Parameters: {"user"=>{"name"=>"abby", "email"=>"dchavez@gmail.com"}, "user_id"=>"2"}
+Completed 404 Not Found in 12ms (ActiveRecord: 6.0ms | Allocations: 3897)
+
+
+
+ActiveRecord::RecordNotFound - Couldn't find ArtWork without an ID:
+  app/controllers/art_works_controller.rb:4:in `index'
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mArtWork Load (2.1ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works"[0m
+  [1m[36mArtworkShare Load (2.0ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares"[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "PabloPicaso"], ["created_at", "2023-03-09 18:58:42.231695"], ["updated_at", "2023-03-09 18:58:42.231695"]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "MichaelAngelo"], ["created_at", "2023-03-09 18:58:42.233690"], ["updated_at", "2023-03-09 18:58:42.233690"]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArtWork Create (1.3ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "La Vie"], ["image_url", "https://www.pablopicasso.org/images/la-vie-photo.jpg"], ["artist_id", 1], ["created_at", "2023-03-09 18:58:42.246323"], ["updated_at", "2023-03-09 18:58:42.246323"]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArtWork Create (0.3ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "The creation of adam"], ["image_url", "https://th-thumbnailer.cdn-si-edu.com/zvrroTVd9q3H_KQtNMAS9lGPayU=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/The-Creation-of-Adam-Michelangelo-631.jpg"], ["artist_id", 2], ["created_at", "2023-03-09 18:58:42.249463"], ["updated_at", "2023-03-09 18:58:42.249463"]]
+  [1m[36mArtWork Load (0.2ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (1.6ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 1], ["viewer_id", 2], ["created_at", "2023-03-09 18:58:42.257459"], ["updated_at", "2023-03-09 18:58:42.257459"]]
+  [1m[36mArtWork Load (0.3ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (0.6ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 2], ["viewer_id", 1], ["created_at", "2023-03-09 18:58:42.261209"], ["updated_at", "2023-03-09 18:58:42.261209"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/users/2/art_works" for ::1 at 2023-03-09 10:59:15 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArtWorksController#index as */*
+  Parameters: {"user"=>{"name"=>"abby", "email"=>"dchavez@gmail.com"}, "user_id"=>"2"}
+Completed 404 Not Found in 8ms (ActiveRecord: 2.6ms | Allocations: 3937)
+
+
+
+ActiveRecord::RecordNotFound - Couldn't find ArtWork without an ID:
+  app/controllers/art_works_controller.rb:4:in `index'
+
+Started GET "/users/2/art_works" for ::1 at 2023-03-09 10:59:55 -0800
+Processing by ArtWorksController#index as */*
+  Parameters: {"user"=>{"name"=>"abby", "email"=>"dchavez@gmail.com"}, "user_id"=>"2"}
+Started GET "/users/2/art_works" for ::1 at 2023-03-09 11:01:36 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArtWorksController#index as */*
+  Parameters: {"user"=>{"name"=>"abby", "email"=>"dchavez@gmail.com"}, "user_id"=>"2"}
+  [1m[36mArtWork Load (1.4ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/art_works_controller.rb:5:in `index'
+Completed 200 OK in 87868ms (Views: 1.6ms | ActiveRecord: 10.7ms | Allocations: 156291)
+
+
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (2.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "PabloPicaso"], ["created_at", "2023-03-09 19:12:05.384558"], ["updated_at", "2023-03-09 19:12:05.384558"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "PabloPicaso"], ["created_at", "2023-03-09 19:12:49.965704"], ["updated_at", "2023-03-09 19:12:49.965704"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mArtWork Load (1.6ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 1]]
+  [1m[36mArtworkShare Load (1.0ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 1]]
+  [1m[36mArtworkShare Destroy (1.0ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 1]]
+  [1m[36mArtWork Destroy (0.7ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 1]]
+  [1m[36mArtworkShare Load (0.3ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 1]]
+  [1m[36mArtworkShare Destroy (0.3ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 2]]
+  [1m[36mUser Destroy (1.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[36mArtWork Load (0.2ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 2]]
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 2]]
+  [1m[36mArtWork Destroy (0.7ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 2]]
+  [1m[36mArtworkShare Load (0.2ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 2]]
+  [1m[36mUser Destroy (0.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  [1m[36mArtWork Load (0.3ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works"[0m
+  [1m[36mArtworkShare Load (0.1ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares"[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "PabloPicaso"], ["created_at", "2023-03-09 19:13:54.741798"], ["updated_at", "2023-03-09 19:13:54.741798"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "MichaelAngelo"], ["created_at", "2023-03-09 19:13:58.765411"], ["updated_at", "2023-03-09 19:13:58.765411"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mArtWork Create (0.9ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "La Vie"], ["image_url", "https://www.pablopicasso.org/images/la-vie-photo.jpg"], ["artist_id", 5], ["created_at", "2023-03-09 19:14:04.792033"], ["updated_at", "2023-03-09 19:14:04.792033"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mArtWork Create (0.6ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "The creation of adam"], ["image_url", "https://th-thumbnailer.cdn-si-edu.com/zvrroTVd9q3H_KQtNMAS9lGPayU=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/The-Creation-of-Adam-Michelangelo-631.jpg"], ["artist_id", 6], ["created_at", "2023-03-09 19:14:10.864075"], ["updated_at", "2023-03-09 19:14:10.864075"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArtWork Load (0.8ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (7.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (1.1ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 3], ["viewer_id", 6], ["created_at", "2023-03-09 19:14:19.711335"], ["updated_at", "2023-03-09 19:14:19.711335"]]
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArtWork Load (0.3ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (0.4ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 4], ["viewer_id", 5], ["created_at", "2023-03-09 19:14:23.430278"], ["updated_at", "2023-03-09 19:14:23.430278"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (3.1ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "PabloPicaso"], ["created_at", "2023-03-09 19:27:03.954137"], ["updated_at", "2023-03-09 19:27:03.954137"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mArtWork Load (2.2ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 5]]
+  [1m[36mArtworkShare Load (0.6ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 3]]
+  [1m[36mArtworkShare Destroy (0.6ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 3]]
+  [1m[36mArtWork Destroy (0.5ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 3]]
+  [1m[36mArtworkShare Load (0.3ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 5]]
+  [1m[36mArtworkShare Destroy (0.2ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 4]]
+  [1m[36mUser Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  [1m[36mArtWork Load (0.1ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 6]]
+  [1m[36mArtworkShare Load (0.2ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 4]]
+  [1m[36mArtWork Destroy (0.3ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 4]]
+  [1m[36mArtworkShare Load (0.3ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 6]]
+  [1m[36mUser Destroy (1.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 6]]
+  [1m[36mArtWork Load (0.3ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works"[0m
+  [1m[36mArtworkShare Load (0.2ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares"[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "PabloPicaso"], ["created_at", "2023-03-09 19:27:50.880745"], ["updated_at", "2023-03-09 19:27:50.880745"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mArtWork Create (1.7ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "La Vie"], ["image_url", "https://www.pablopicasso.org/images/la-vie-photo.jpg"], ["artist_id", 8], ["created_at", "2023-03-09 19:27:55.371999"], ["updated_at", "2023-03-09 19:27:55.371999"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "MichaelAngelo"], ["created_at", "2023-03-09 19:27:59.332087"], ["updated_at", "2023-03-09 19:27:59.332087"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mArtWork Create (0.4ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "The creation of adam"], ["image_url", "https://th-thumbnailer.cdn-si-edu.com/zvrroTVd9q3H_KQtNMAS9lGPayU=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/The-Creation-of-Adam-Michelangelo-631.jpg"], ["artist_id", 9], ["created_at", "2023-03-09 19:28:04.183329"], ["updated_at", "2023-03-09 19:28:04.183329"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArtWork Load (0.6ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (1.7ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 5], ["viewer_id", 9], ["created_at", "2023-03-09 19:28:08.453637"], ["updated_at", "2023-03-09 19:28:08.453637"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArtWork Load (0.3ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (0.7ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 6], ["viewer_id", 8], ["created_at", "2023-03-09 19:28:18.331287"], ["updated_at", "2023-03-09 19:28:18.331287"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mArtWork Load (0.6ms)[0m  [1m[34mSELECT "art_works"."id", "art_works"."title" FROM "art_works" WHERE (artist_id = (2))[0m
+  [1m[36mArtWork Load (0.4ms)[0m  [1m[34mSELECT "art_works"."id", "art_works"."title" FROM "art_works" WHERE (artist_id = (1))[0m
+  [1m[36mArtWork Load (0.6ms)[0m  [1m[34mSELECT "art_works"."title" FROM "art_works" WHERE (artist_id = (1))[0m
+  [1m[36mArtWork Pluck (0.5ms)[0m  [1m[34mSELECT "art_works"."id", "art_works"."title" FROM "art_works" WHERE (artist_id = (1))[0m
+  [1m[36mArtWork Pluck (0.5ms)[0m  [1m[34mSELECT "art_works"."id", "art_works"."title" FROM "art_works" WHERE (artist_id = (2))[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mArtWork Load (1.4ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 8]]
+  [1m[36mArtworkShare Load (1.5ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 5]]
+  [1m[36mArtworkShare Destroy (0.6ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 5]]
+  [1m[36mArtWork Destroy (0.9ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 5]]
+  [1m[36mArtworkShare Load (0.1ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 8]]
+  [1m[36mArtworkShare Destroy (0.2ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 6]]
+  [1m[36mUser Destroy (0.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 8]]
+  [1m[36mArtWork Load (0.2ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 9]]
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 6]]
+  [1m[36mArtWork Destroy (0.4ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 6]]
+  [1m[36mArtworkShare Load (0.2ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 9]]
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 9]]
+  [1m[36mArtWork Load (0.3ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works"[0m
+  [1m[36mArtworkShare Load (0.2ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares"[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "PabloPicaso"], ["created_at", "2023-03-09 19:31:31.584991"], ["updated_at", "2023-03-09 19:31:31.584991"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "MichaelAngelo"], ["created_at", "2023-03-09 19:31:34.991221"], ["updated_at", "2023-03-09 19:31:34.991221"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mArtWork Create (1.0ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "La Vie"], ["image_url", "https://www.pablopicasso.org/images/la-vie-photo.jpg"], ["artist_id", 10], ["created_at", "2023-03-09 19:31:38.992951"], ["updated_at", "2023-03-09 19:31:38.992951"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mArtWork Create (0.5ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "The creation of adam"], ["image_url", "https://th-thumbnailer.cdn-si-edu.com/zvrroTVd9q3H_KQtNMAS9lGPayU=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/The-Creation-of-Adam-Michelangelo-631.jpg"], ["artist_id", 11], ["created_at", "2023-03-09 19:31:43.034886"], ["updated_at", "2023-03-09 19:31:43.034886"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArtWork Load (0.5ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (0.7ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 7], ["viewer_id", 11], ["created_at", "2023-03-09 19:31:50.395751"], ["updated_at", "2023-03-09 19:31:50.395751"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mArtWork Load (0.4ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (0.5ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 8], ["viewer_id", 10], ["created_at", "2023-03-09 19:31:53.881754"], ["updated_at", "2023-03-09 19:31:53.881754"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mArtWork Pluck (0.6ms)[0m  [1m[34mSELECT "art_works"."id", "art_works"."title" FROM "art_works" WHERE (artist_id = (1))[0m
+  [1m[36mArtWork Pluck (0.5ms)[0m  [1m[34mSELECT "art_works"."id", "art_works"."title" FROM "art_works" WHERE (artist_id = (1))[0m
+  [1m[36mArtWork Pluck (0.5ms)[0m  [1m[34mSELECT "art_works"."id", "art_works"."title" FROM "art_works" WHERE (artist_id = (10))[0m
+  [1m[36mArtWork Pluck (0.6ms)[0m  [1m[34mSELECT "art_works"."id", "art_works"."title" FROM "art_works" WHERE (artist_id = (9))[0m
+  [1m[36mArtWork Pluck (0.6ms)[0m  [1m[34mSELECT "art_works"."id", "art_works"."title" FROM "art_works" WHERE (artist_id = (11))[0m
+  [1m[36mArtWork Pluck (0.4ms)[0m  [1m[34mSELECT "art_works"."id", "art_works"."title" FROM "art_works" WHERE (artist_id = 11)[0m

@@ -1,6 +1,14 @@
 class ArtWorksController < ApplicationController
     def index
-        render json: ArtWork.all
+      # debugger
+      incoming_wildcard = params[:user_id]
+      art_work = ArtWork.find(incoming_wildcard)
+
+      if art_work
+        render json: art_work
+      else
+        render json: ['not found'], status: 404
+      end
     end
     
     def create
@@ -40,6 +48,8 @@ class ArtWorksController < ApplicationController
     
         redirect_to art_works_url
     end
+
+
     
     private
     def art_work_params
