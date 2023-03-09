@@ -32,8 +32,10 @@ class  ArtWork < ApplicationRecord
 #passing in the specified user's id. (You can access the specified user's id in the 
 #controller through params[:user_id] because :user_id is part of the nested route.)
 
-  def self.artworks_for_user_id(id)
-    art_work = ArtWork.joins(:artist).where('artist_id = (?)', id).pluck('users.id')
-    art_work.first
+  def self.artworks_for_user_id(id) #id = user_id/artist_id
+    art_work = ArtWork.joins(:artwork_shares).left_outer_joins(:artist).where('artist_id = (?) OR artwork_shares.viewer_id = (?)', id, id).distinct
+    #will return all the art_works.id owned by the user_id and viewed by user_id
   end
 end
+
+# render_stuff = ArtWork.joins(:artwork_shares).joins(:artist).where('art_works.artist_id = (?)', incoming_wildcard).select('art_works.id', 'art_works.title', 'artwork_shares.art_work_id', 'users.username')

@@ -3,12 +3,10 @@ class ArtWorksController < ApplicationController
       # debugger
       param = params[:user_id]
       incoming_wildcard = ArtWork.artworks_for_user_id(param)
+      # render_stuff = ArtWork.find_by(id: incoming_wildcard)
       # debugger
-      arts = ArtWork.find(incoming_wildcard.first)
-      arts_share = ArtworkShare.find(incoming_wildcard.first)
-
-      if arts && arts_share
-        render json: arts
+      if incoming_wildcard
+        render json: incoming_wildcard
       else
         render json: ['not found'], status: 404
       end
