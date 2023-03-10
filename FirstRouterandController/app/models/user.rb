@@ -36,6 +36,11 @@ class User < ApplicationRecord
     dependent: :destroy,
     inverse_of: :author
 
+  has_many :likes,
+    foreign_key: :user_id,
+    class_name: :Like,
+    dependent: :destroy
+
   def self.username_finder(username)
     User.where('username = (?)', username)
   end

@@ -2644,3 +2644,146 @@ Processing by UsersController#index as */*
 Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.8ms | Allocations: 964)
 
 
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6669552664136696880)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateLikes (20230310004545)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (41.2ms)[0m  [1m[35mCREATE TABLE "likes" ("id" bigserial primary key, "user_id" bigint NOT NULL, "art_work_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_1e09b5dabf"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_b41675869d"
+FOREIGN KEY ("art_work_id")
+  REFERENCES "art_works" ("id")
+)[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE INDEX "index_likes_on_user_id" ON "likes" ("user_id")[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE INDEX "index_likes_on_art_work_id" ON "likes" ("art_work_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230310004545"]]
+  [1m[36mTRANSACTION (7.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(6669552664136696880)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mArtWork Load (3.0ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 1]]
+  [1m[36mArtworkShare Load (0.9ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 1]]
+  [1m[36mArtworkShare Destroy (0.9ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 1]]
+  [1m[36mComment Load (2.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."art_work_id" = $1[0m  [["art_work_id", 1]]
+  [1m[36mComment Destroy (0.7ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = $1[0m  [["id", 2]]
+  [1m[36mArtWork Destroy (3.1ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 1]]
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 1]]
+  [1m[36mArtworkShare Destroy (0.4ms)[0m  [1m[31mDELETE FROM "artwork_shares" WHERE "artwork_shares"."id" = $1[0m  [["id", 2]]
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."author_id" = $1[0m  [["author_id", 1]]
+  [1m[36mComment Destroy (0.5ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = $1[0m  [["id", 1]]
+  [1m[36mUser Destroy (0.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[36mArtWork Load (0.6ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."artist_id" = $1[0m  [["artist_id", 2]]
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."art_work_id" = $1[0m  [["art_work_id", 2]]
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."art_work_id" = $1[0m  [["art_work_id", 2]]
+  [1m[36mArtWork Destroy (0.9ms)[0m  [1m[31mDELETE FROM "art_works" WHERE "art_works"."id" = $1[0m  [["id", 2]]
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares" WHERE "artwork_shares"."viewer_id" = $1[0m  [["viewer_id", 2]]
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."author_id" = $1[0m  [["author_id", 2]]
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  [1m[36mArtWork Load (0.3ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works"[0m
+  [1m[36mArtworkShare Load (0.4ms)[0m  [1m[34mSELECT "artwork_shares".* FROM "artwork_shares"[0m
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  [1m[36mUser Create (2.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "PabloPicaso"], ["created_at", "2023-03-10 00:51:29.494421"], ["updated_at", "2023-03-10 00:51:29.494421"]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "MichaelAngelo"], ["created_at", "2023-03-10 00:51:29.503043"], ["updated_at", "2023-03-10 00:51:29.503043"]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArtWork Create (1.0ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "La Vie"], ["image_url", "https://www.pablopicasso.org/images/la-vie-photo.jpg"], ["artist_id", 1], ["created_at", "2023-03-10 00:51:29.512057"], ["updated_at", "2023-03-10 00:51:29.512057"]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArtWork Create (0.6ms)[0m  [1m[32mINSERT INTO "art_works" ("title", "image_url", "artist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "The creation of adam"], ["image_url", "https://th-thumbnailer.cdn-si-edu.com/zvrroTVd9q3H_KQtNMAS9lGPayU=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/The-Creation-of-Adam-Michelangelo-631.jpg"], ["artist_id", 2], ["created_at", "2023-03-10 00:51:29.519494"], ["updated_at", "2023-03-10 00:51:29.519494"]]
+  [1m[36mArtWork Load (0.6ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (1.6ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 1], ["viewer_id", 2], ["created_at", "2023-03-10 00:51:29.543265"], ["updated_at", "2023-03-10 00:51:29.543265"]]
+  [1m[36mArtWork Load (0.3ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArtworkShare Create (0.6ms)[0m  [1m[32mINSERT INTO "artwork_shares" ("art_work_id", "viewer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["art_work_id", 2], ["viewer_id", 1], ["created_at", "2023-03-10 00:51:29.551954"], ["updated_at", "2023-03-10 00:51:29.551954"]]
+  [1m[36mArtWork Load (0.4ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mComment Create (0.8ms)[0m  [1m[32mINSERT INTO "comments" ("author_id", "art_work_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["author_id", 1], ["art_work_id", 2], ["body", "This stinks!!!"], ["created_at", "2023-03-10 00:51:29.562281"], ["updated_at", "2023-03-10 00:51:29.562281"]]
+  [1m[36mArtWork Load (0.7ms)[0m  [1m[34mSELECT "art_works".* FROM "art_works" WHERE "art_works"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mComment Create (1.4ms)[0m  [1m[32mINSERT INTO "comments" ("author_id", "art_work_id", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["author_id", 2], ["art_work_id", 1], ["body", "This is so beautiful!"], ["created_at", "2023-03-10 00:51:29.573376"], ["updated_at", "2023-03-10 00:51:29.573376"]]
+  [1m[36mLike Create (1.0ms)[0m  [1m[32mINSERT INTO "likes" ("user_id", "art_work_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["art_work_id", 2], ["created_at", "2023-03-10 00:51:29.621083"], ["updated_at", "2023-03-10 00:51:29.621083"]]
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/users/1/likes" for ::1 at 2023-03-09 17:12:45 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LikesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mLike Load (1.6ms)[0m  [1m[34mSELECT art_works.id, art_works.title FROM "likes" INNER JOIN "art_works" ON "art_works"."id" = "likes"."art_work_id" WHERE (art_work_id = (NULL))[0m
+  ↳ app/controllers/likes_controller.rb:7:in `index'
+Completed 200 OK in 501ms (Views: 297.6ms | ActiveRecord: 12.8ms | Allocations: 8865)
+
+
+Started GET "/art_works/1/likes" for ::1 at 2023-03-09 17:14:37 -0800
+Processing by LikesController#index as */*
+  Parameters: {"art_work_id"=>"1"}
+  [1m[36mLike Load (1.7ms)[0m  [1m[34mSELECT art_works.id, art_works.title FROM "likes" INNER JOIN "art_works" ON "art_works"."id" = "likes"."art_work_id" WHERE (art_work_id = ('1'))[0m
+  ↳ app/controllers/likes_controller.rb:7:in `index'
+Completed 200 OK in 18ms (Views: 11.8ms | ActiveRecord: 1.7ms | Allocations: 893)
+
+
+Started GET "/art_works/2/likes" for ::1 at 2023-03-09 17:14:59 -0800
+Processing by LikesController#index as */*
+  Parameters: {"art_work_id"=>"2"}
+  [1m[36mLike Load (0.6ms)[0m  [1m[34mSELECT art_works.id, art_works.title FROM "likes" INNER JOIN "art_works" ON "art_works"."id" = "likes"."art_work_id" WHERE (art_work_id = ('2'))[0m
+  ↳ app/controllers/likes_controller.rb:7:in `index'
+Completed 200 OK in 52ms (Views: 47.3ms | ActiveRecord: 4.0ms | Allocations: 4055)
+
+
+Started GET "/users/2/likes" for ::1 at 2023-03-09 17:17:23 -0800
+Processing by LikesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mLike Load (0.4ms)[0m  [1m[34mSELECT art_works.id, art_works.title FROM "likes" INNER JOIN "art_works" ON "art_works"."id" = "likes"."art_work_id" WHERE (art_work_id = (NULL))[0m
+  ↳ app/controllers/likes_controller.rb:12:in `index'
+Completed 200 OK in 186ms (Views: 64.0ms | ActiveRecord: 6.3ms | Allocations: 5325)
+
+
+Started GET "/users/1/likes" for ::1 at 2023-03-09 17:17:31 -0800
+Processing by LikesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mLike Load (1.0ms)[0m  [1m[34mSELECT art_works.id, art_works.title FROM "likes" INNER JOIN "art_works" ON "art_works"."id" = "likes"."art_work_id" WHERE (art_work_id = (NULL))[0m
+  ↳ app/controllers/likes_controller.rb:12:in `index'
+Completed 200 OK in 9ms (Views: 4.4ms | ActiveRecord: 1.0ms | Allocations: 924)
+
+
+Started GET "/users/1/likes" for ::1 at 2023-03-09 17:20:12 -0800
+Processing by LikesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mLike Load (0.6ms)[0m  [1m[34mSELECT art_works.id, art_works.title FROM "likes" INNER JOIN "art_works" ON "art_works"."id" = "likes"."art_work_id" WHERE (art_work_id = (NULL))[0m
+  ↳ app/controllers/likes_controller.rb:12:in `index'
+Completed 200 OK in 182ms (Views: 54.2ms | ActiveRecord: 5.8ms | Allocations: 5311)
+
+
+Started GET "/users/2/likes" for ::1 at 2023-03-09 17:20:18 -0800
+Processing by LikesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mLike Load (0.6ms)[0m  [1m[34mSELECT art_works.id, art_works.title FROM "likes" INNER JOIN "art_works" ON "art_works"."id" = "likes"."art_work_id" WHERE (art_work_id = (NULL))[0m
+  ↳ app/controllers/likes_controller.rb:12:in `index'
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.6ms | Allocations: 944)
+
+
+Started GET "/users/2/likes" for ::1 at 2023-03-09 17:24:21 -0800
+Processing by LikesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mLike Load (0.5ms)[0m  [1m[34mSELECT art_works.id, art_works.title FROM "likes" INNER JOIN "art_works" ON "art_works"."id" = "likes"."art_work_id" WHERE (art_work_id = (NULL))[0m
+  ↳ app/controllers/likes_controller.rb:12:in `index'
+Completed 200 OK in 179ms (Views: 55.9ms | ActiveRecord: 5.0ms | Allocations: 5349)
+
+
+Started GET "/users/2/likes" for ::1 at 2023-03-09 17:25:57 -0800
+Processing by LikesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mLike Load (0.9ms)[0m  [1m[34mSELECT art_works.id, art_works.title FROM "likes" INNER JOIN "art_works" ON "art_works"."id" = "likes"."art_work_id" WHERE (art_work_id = (NULL))[0m
+  ↳ app/controllers/likes_controller.rb:12:in `index'
+Completed 200 OK in 209ms (Views: 78.9ms | ActiveRecord: 6.3ms | Allocations: 5308)
+
+
+Started GET "/users/1/likes" for ::1 at 2023-03-09 17:27:05 -0800
+Processing by LikesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mLike Load (0.8ms)[0m  [1m[34mSELECT art_works.id, art_works.title FROM "likes" INNER JOIN "art_works" ON "art_works"."id" = "likes"."art_work_id" WHERE (art_work_id = (NULL))[0m
+  ↳ app/controllers/likes_controller.rb:12:in `index'
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 0.8ms | Allocations: 929)
+
+

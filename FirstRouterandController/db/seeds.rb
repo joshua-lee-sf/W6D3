@@ -27,4 +27,5 @@ ApplicationRecord.transaction do
   share2 = ArtworkShare.create(:art_work_id => art2.id, :viewer_id => u1.id )
   comment1 = Comment.create(:author_id => u1.id, :art_work_id => art2.id, :body => 'This stinks!!!')
   comment2 = Comment.create(:author_id => u2.id, :art_work_id => art1.id, :body => 'This is so beautiful!')
+  like1 = Like.create(:user_id => u1.id, :art_work_id => art2.id)
 end
