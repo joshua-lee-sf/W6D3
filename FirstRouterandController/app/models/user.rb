@@ -35,4 +35,8 @@ class User < ApplicationRecord
     class_name: :Comment,
     dependent: :destroy,
     inverse_of: :author
+
+  def self.username_finder(username)
+    User.where('username = (?)', username)
+  end
 end
